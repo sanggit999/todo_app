@@ -35,30 +35,66 @@ class HomeScreen extends StatelessWidget {
                       )
                     ]),
               ),
-              Positioned(
-                  child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                padding: EdgeInsets.all(20),
+            ],
+          ),
+          Positioned(
+              top: 200,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(20),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Container(
                       width: devices.width,
+                      height: devices.height * 0.3,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: colors.primaryContainer),
                       child: ListView.builder(
-                          itemCount: 10,
+                          itemCount: 8,
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
                           itemBuilder: (context, index) {
                             return Text("OK OK");
                           }),
-                    )
+                    ),
+                    const Gap(20),
+                    Text(
+                      "Đã hoàn thành ",
+                      style: context.textTheme.headlineMedium,
+                    ),
+                    const Gap(20),
+                    Container(
+                      width: devices.width,
+                      height: devices.height * 0.3,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: colors.primaryContainer),
+                      child: ListView.builder(
+                          itemCount: 8,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          itemBuilder: (context, index) {
+                            return Text("Home");
+                          }),
+                    ),
+                    const Gap(20),
+                    ElevatedButton(
+                        onPressed: () {},
+                        child: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: DisplayWhiteText(
+                            text: "Thêm nhiệm vụ mới",
+                            fontSize: 18,
+                          ),
+                        ))
                   ],
                 ),
               ))
-            ],
-          )
         ],
       ),
     );
