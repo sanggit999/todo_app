@@ -19,9 +19,8 @@ class DisplayListOfTask extends StatelessWidget {
         ? context.deviceSize.height * 0.25
         : context.deviceSize.height * 0.3;
 
-    final emptyTasks = isCompletedTasks
-        ? "Chưa có nhiệm vụ hoàn thành."
-        : "Không có nhiệm vụ.";
+    final emptyTasks =
+        isCompletedTasks ? "Chưa có nhiệm vụ hoàn thành" : "Không có nhiệm vụ";
 
     return CommonContainer(
       height: height,
@@ -41,13 +40,12 @@ class DisplayListOfTask extends StatelessWidget {
                     },
                     onTap: () async {
                       // Action Todo detail task
-                      await showBottomSheet(
+                      await showModalBottomSheet(
+                          enableDrag: true,
+                          isDismissible: true,
                           context: context,
                           builder: (context) {
-                            return SizedBox(
-                              height: context.deviceSize.height * 0.6,
-                              child: TaskDetail(task: task),
-                            );
+                            return TaskDetail(task: task);
                           });
                     },
                     child: TaskTitle(task: task));

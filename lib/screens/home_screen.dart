@@ -6,10 +6,12 @@ import 'package:todo_app/utils/task_category.dart';
 import 'package:todo_app/widgets/display_list_of_task.dart';
 import 'package:todo_app/widgets/display_white_text.dart';
 import 'package:todo_app/widgets/widgets.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
+  static HomeScreen builder(BuildContext context, GoRouterState state) =>
+      const HomeScreen();
   @override
   Widget build(BuildContext context) {
     final colors = context.colorScheme;

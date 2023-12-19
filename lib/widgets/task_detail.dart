@@ -49,9 +49,7 @@ class TaskDetail extends StatelessWidget {
           color: task.category.color,
         ),
         const Gap(15),
-        Text(task.note.isEmpty
-            ? "Không có bổ sung không cho nhiệm vụ này"
-            : task.note),
+        Text(task.note.isEmpty ? "Không có ghi chú ở nhiệm vụ này" : task.note),
         const Gap(15),
         Visibility(
             visible: task.isCompleted,
