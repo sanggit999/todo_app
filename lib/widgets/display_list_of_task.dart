@@ -3,6 +3,8 @@ import 'package:todo_app/data/models/task.dart';
 import 'package:todo_app/utils/extensions.dart';
 import 'package:todo_app/widgets/common_container.dart';
 import 'package:gap/gap.dart';
+import 'package:todo_app/widgets/task_detail.dart';
+import 'package:todo_app/widgets/task_title.dart';
 
 class DisplayListOfTask extends StatelessWidget {
   const DisplayListOfTask(
@@ -27,42 +29,35 @@ class DisplayListOfTask extends StatelessWidget {
           ? Center(
               child: Text(emptyTasks, style: context.textTheme.headlineSmall),
             )
-          : ListView.builder(
+          : ListView.separated(
               itemCount: tasks.length,
               shrinkWrap: true,
               padding: EdgeInsets.zero,
               itemBuilder: (context, index) {
                 final task = tasks[index];
-                return Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(9.0),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: task.category.color.withOpacity(0.3),
-                          border:
-                              Border.all(width: 2, color: task.category.color)),
-                      child: Center(
-                        child: Icon(
-                          task.category.icon,
-                          color: task.category.color,
-                        ),
-                      ),
-                    ),
-                    const Gap(10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(task.time),
-                          Text(task.time),
-                        ],
-                      ),
-                    ),
-                    Checkbox(value: task.isCompleted, onChanged: (value) {})
-                  ],
+                return InkWell(
+                    onLongPress: () {
+                      // Action Todo delete task
+                    },
+                    onTap: () async {
+                      // Action Todo detail task
+                      await showBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return SizedBox(
+                              height: context.deviceSize.height * 0.6,
+                              child: TaskDetail(task: task),
+                            );
+                          });
+                    },
+                    child: TaskTitle(task: task));
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider(
+                  thickness: 1.5,
                 );
-              }),
+              },
+            ),
     );
   }
 }

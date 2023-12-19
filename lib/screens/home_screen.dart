@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           Positioned(
-              top: 200,
+              top: 150,
               bottom: 0,
               left: 0,
               right: 0,
@@ -57,11 +57,25 @@ class HomeScreen extends StatelessWidget {
                         tasks: [
                           Task(
                               title: "title",
-                              note: "note",
+                              note: "",
                               time: "time",
                               date: "date",
                               category: TaskCategory.education,
-                              isCompleted: false)
+                              isCompleted: false),
+                          Task(
+                              title: "title",
+                              note: "",
+                              time: "time",
+                              date: "date",
+                              category: TaskCategory.shopping,
+                              isCompleted: false),
+                          Task(
+                              title: "title",
+                              note: "note",
+                              time: "time",
+                              date: "Ngày 20 Tháng 12 Năm 2023",
+                              category: TaskCategory.travel,
+                              isCompleted: false),
                         ],
                       ),
                       const Gap(20),
@@ -71,7 +85,29 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const Gap(20),
                       const DisplayListOfTask(
-                        tasks: [],
+                        tasks: [
+                          Task(
+                              title: "title",
+                              note: "note",
+                              time: "time",
+                              date: "date",
+                              category: TaskCategory.education,
+                              isCompleted: true),
+                          Task(
+                              title: "title",
+                              note: "note",
+                              time: "time",
+                              date: "date",
+                              category: TaskCategory.social,
+                              isCompleted: true),
+                          Task(
+                              title: "title",
+                              note: "note",
+                              time: "time",
+                              date: "date",
+                              category: TaskCategory.health,
+                              isCompleted: true),
+                        ],
                         isCompletedTasks: true,
                       ),
                       const Gap(20),
