@@ -3,8 +3,8 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
-import 'package:todo_app/data/data.dart';
 
+import 'package:todo_app/data/data.dart';
 import 'package:todo_app/utils/task_category.dart';
 
 class Task extends Equatable {
@@ -46,7 +46,7 @@ class Task extends Equatable {
       TaskKey.time: time,
       TaskKey.date: date,
       TaskKey.category: category.name,
-      TaskKey.isCompleted: isCompleted,
+      TaskKey.isCompleted: isCompleted ? 1 : 0,
     };
   }
 
@@ -58,7 +58,27 @@ class Task extends Equatable {
       time: map[TaskKey.time],
       date: map[TaskKey.date],
       category: TaskCategory.stringToCategory(map[TaskKey.category]),
-      isCompleted: map[TaskKey.isCompleted],
+      isCompleted: map[TaskKey.isCompleted] == 1 ? true : false,
+    );
+  }
+
+  Task copyWith({
+    int? id,
+    String? title,
+    String? note,
+    String? time,
+    String? date,
+    TaskCategory? category,
+    bool? isCompleted,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      note: note ?? this.note,
+      time: time ?? this.time,
+      date: date ?? this.date,
+      category: category ?? this.category,
+      isCompleted: isCompleted ?? this.isCompleted,
     );
   }
 }

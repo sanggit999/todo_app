@@ -1,6 +1,4 @@
 import 'package:todo_app/data/data.dart';
-import 'package:todo_app/data/models/task.dart';
-import 'package:todo_app/data/repositories/repositories.dart';
 
 class TaskRepositoryImpl implements TaskRepository {
   final TaskDatasource _datasource;

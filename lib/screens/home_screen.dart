@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/data/models/task.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_app/data/data.dart';
+import 'package:todo_app/providers/providers.dart';
 import 'package:todo_app/routes/route_location.dart';
 import 'package:todo_app/utils/extensions.dart';
 import 'package:gap/gap.dart';
-import 'package:todo_app/utils/task_category.dart';
 import 'package:todo_app/widgets/display_list_of_task.dart';
 import 'package:todo_app/widgets/display_white_text.dart';
 import 'package:todo_app/widgets/widgets.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
   static HomeScreen builder(BuildContext context, GoRouterState state) =>
       const HomeScreen();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.colorScheme;
     final devices = context.deviceSize;
 
+    final taskState = ref.watch(taskProvider);
+    final incompletedTasks = _incompletedTasks(taskState.tasks);
+    final completedTasks = _completedTasks(taskState.tasks);
     return Scaffold(
       body: Stack(
         children: [
@@ -30,12 +34,6 @@ class HomeScreen extends StatelessWidget {
                 child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      DisplayWhiteText(
-                        text: "Ngày 18 Tháng 12 Năm 2023",
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      Gap(20),
                       DisplayWhiteText(
                         text: "Danh Sách Làm Việc",
                         fontSize: 40,
@@ -56,61 +54,18 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const DisplayListOfTask(
-                        tasks: [
-                          Task(
-                              title: "title",
-                              note: "",
-                              time: "time",
-                              date: "date",
-                              category: TaskCategory.education,
-                              isCompleted: false),
-                          Task(
-                              title: "title",
-                              note: "",
-                              time: "time",
-                              date: "date",
-                              category: TaskCategory.shopping,
-                              isCompleted: false),
-                          Task(
-                              title: "title",
-                              note: "note",
-                              time: "time",
-                              date: "Ngày 20 Tháng 12 Năm 2023",
-                              category: TaskCategory.travel,
-                              isCompleted: false),
-                        ],
+                      DisplayListOfTask(
+                        tasks: incompletedTasks,
                       ),
                       const Gap(20),
                       Text(
                         "Đã hoàn thành ",
-                        style: context.textTheme.headlineMedium,
+                        style: context.textTheme.headlineMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const Gap(20),
-                      const DisplayListOfTask(
-                        tasks: [
-                          Task(
-                              title: "title",
-                              note: "note",
-                              time: "time",
-                              date: "date",
-                              category: TaskCategory.education,
-                              isCompleted: true),
-                          Task(
-                              title: "title",
-                              note: "note",
-                              time: "time",
-                              date: "date",
-                              category: TaskCategory.social,
-                              isCompleted: true),
-                          Task(
-                              title: "title",
-                              note: "note",
-                              time: "time",
-                              date: "date",
-                              category: TaskCategory.health,
-                              isCompleted: true),
-                        ],
+                      DisplayListOfTask(
+                        tasks: completedTasks,
                         isCompletedTasks: true,
                       ),
                       const Gap(20),
@@ -132,5 +87,25 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<Task> _incompletedTasks(List<Task> tasks) {
+    final List<Task> filteredTask = [];
+    for (var task in tasks) {
+      if (!task.isCompleted) {
+        filteredTask.add(task);
+      }
+    }
+    return filteredTask;
+  }
+
+  List<Task> _completedTasks(List<Task> tasks) {
+    final List<Task> filteredTask = [];
+    for (var task in tasks) {
+      if (task.isCompleted) {
+        filteredTask.add(task);
+      }
+    }
+    return filteredTask;
   }
 }

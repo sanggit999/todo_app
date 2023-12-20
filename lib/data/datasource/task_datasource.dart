@@ -28,11 +28,11 @@ class TaskDatasource {
         create table ${AppKeys.dbTable}(
           ${TaskKey.id} INTEGER PRIMARY KEY AUTOINCREMENT,
           ${TaskKey.title} TEXT,
-          ${TaskKey.note}TEXT,
-          ${TaskKey.time}TEXT,
-          ${TaskKey.date}TEXT,
-          ${TaskKey.category}TEXT,
-          ${TaskKey.isCompleted}INTEGER,
+          ${TaskKey.note} TEXT,
+          ${TaskKey.time} TEXT,
+          ${TaskKey.date} TEXT,
+          ${TaskKey.category} TEXT,
+          ${TaskKey.isCompleted} INTEGER
           )
       
        ''');

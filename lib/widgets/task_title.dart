@@ -36,7 +36,7 @@ class TaskTitle extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(task.time,
+                Text(task.title,
                     style: texts.titleMedium?.copyWith(
                         decoration: textDecoration,
                         fontSize: 20,
