@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/data/models/task.dart';
+import 'package:todo_app/routes/route_location.dart';
 import 'package:todo_app/utils/extensions.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/utils/task_category.dart';
@@ -114,7 +115,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const Gap(20),
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.push(RouteLocation.createTask);
+                          },
                           child: const Padding(
                             padding: EdgeInsets.all(10.0),
                             child: DisplayWhiteText(

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/data/models/task.dart';
-import 'package:todo_app/utils/extensions.dart';
-import 'package:todo_app/widgets/common_container.dart';
-import 'package:gap/gap.dart';
-import 'package:todo_app/widgets/task_detail.dart';
-import 'package:todo_app/widgets/task_title.dart';
+import 'package:todo_app/data/data.dart';
+import 'package:todo_app/utils/utils.dart';
+import 'package:todo_app/widgets/widgets.dart';
 
 class DisplayListOfTask extends StatelessWidget {
   const DisplayListOfTask(

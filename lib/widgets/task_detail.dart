@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/data/models/task.dart';
-import 'package:todo_app/utils/extensions.dart';
-import 'package:todo_app/widgets/circle_container.dart';
 import 'package:gap/gap.dart';
+import 'package:todo_app/data/data.dart';
+import 'package:todo_app/utils/utils.dart';
+import 'package:todo_app/widgets/widgets.dart';
 
 class TaskDetail extends StatelessWidget {
   const TaskDetail({super.key, required this.task});

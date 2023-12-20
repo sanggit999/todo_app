@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/config/theme/app_theme.dart';
 import 'package:todo_app/routes/routes_provider.dart';
 import 'package:todo_app/screens/home_screen.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TodoApp extends ConsumerWidget {
+class TodoApp extends HookConsumerWidget {
   const TodoApp({super.key});
 
   // This widget is the root of your application.
